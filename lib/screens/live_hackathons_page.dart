@@ -47,6 +47,7 @@ class _LiveHackathonsPageState extends State<LiveHackathonsPage> {
     return Container(
       child: Flexible(
         child: CardSwiper(
+          numberOfCardsDisplayed: 2,
           cardsCount: cards.length,
           cardBuilder: (context, index, percentThresholdX, percentThresholdY) =>
               cards[index],
