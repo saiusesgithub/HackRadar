@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackradar/screens/live_hackathons_page.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -8,21 +9,16 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 10,
         automaticallyImplyLeading: false,
-        title: Text(
-          "HackRadar",
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 20,
-            color: Color(0xff000000),
-          ),
-        ),
+        title: Text("HackRadar"),
       ),
+      body: LiveHackathonsPage(),
       bottomNavigationBar: _bottomNavigationBar(),
     );
   }
@@ -37,11 +33,15 @@ class _HomepageState extends State<Homepage> {
         ),
         BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
       ],
-      currentIndex: 0,
+      currentIndex: _selectedIndex,
       iconSize: 22,
       selectedFontSize: 14,
       unselectedFontSize: 14,
-      onTap: (value) {},
+      onTap: (value) {
+        setState(() {
+          _selectedIndex = value;
+        });
+      },
     );
   }
 }
