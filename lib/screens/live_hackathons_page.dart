@@ -70,6 +70,45 @@ class _LiveHackathonsPageState extends State<LiveHackathonsPage> {
                       ),
                       textAlign: TextAlign.center,
                     ),
+                    Text(
+                      hackathon['type'] ?? 'Unknown Type',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white70,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      hackathon['no_of_participants'] ?? 'Unknown',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white70,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      hackathon['start_date'] ?? 'Unknown',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white70,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 30),
+                    OutlinedButton(
+                      style: ButtonStyle(
+                        side: WidgetStateProperty.all(
+                          const BorderSide(color: Color(0xff00ffd5)),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        'More Info',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ],
                 ),
               ),
