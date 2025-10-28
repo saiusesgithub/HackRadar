@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 
 final ThemeData appTheme = ThemeData(
   fontFamily: 'Montserrat',
+  textTheme: const TextTheme(
+    bodyLarge: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
+    bodyMedium: TextStyle(fontWeight: FontWeight.w600, color: Colors.white70),
+    bodySmall: TextStyle(fontWeight: FontWeight.w600, color: Colors.white70),
+    titleLarge: TextStyle(fontWeight: FontWeight.w700, color: Colors.white),
+  ),
   appBarTheme: AppBarTheme(
     titleTextStyle: TextStyle(
             fontWeight: FontWeight.w400,

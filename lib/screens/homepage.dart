@@ -26,12 +26,24 @@ class _HomepageState extends State<Homepage> {
   Widget _bottomNavigationBar() {
     return BottomNavigationBar(
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Live"),
         BottomNavigationBarItem(
-          icon: Icon(Icons.account_circle),
+          icon: Icon(
+            _selectedIndex == 0
+                ? Icons.play_circle_fill
+                : Icons.play_circle_outline,
+          ),
+          label: "Live",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(_selectedIndex == 1 ? Icons.calendar_today : Icons.event),
           label: "Upcoming",
         ),
-        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
+        BottomNavigationBarItem(
+          icon: Icon(
+            _selectedIndex == 2 ? Icons.settings : Icons.settings_outlined,
+          ),
+          label: "Settings",
+        ),
       ],
       currentIndex: _selectedIndex,
       iconSize: 22,
