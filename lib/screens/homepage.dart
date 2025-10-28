@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hackradar/screens/live_hackathons_page.dart';
+import 'package:hackradar/screens/about_page.dart';
+import 'package:hackradar/screens/upcoming_hackathons_page.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -16,9 +18,12 @@ class _HomepageState extends State<Homepage> {
       appBar: AppBar(
         elevation: 10,
         automaticallyImplyLeading: false,
-        title: Text("HackRadar"),
+        title: const Text('HackRadar'),
       ),
-      body: LiveHackathonsPage(),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: [LiveHackathonsPage(), UpcomingHackathonsPage(), AboutPage()],
+      ),
       bottomNavigationBar: _bottomNavigationBar(),
     );
   }
@@ -39,10 +44,8 @@ class _HomepageState extends State<Homepage> {
           label: "Upcoming",
         ),
         BottomNavigationBarItem(
-          icon: Icon(
-            _selectedIndex == 2 ? Icons.settings : Icons.settings_outlined,
-          ),
-          label: "Settings",
+          icon: Icon(_selectedIndex == 2 ? Icons.info : Icons.info_outline),
+          label: "About",
         ),
       ],
       currentIndex: _selectedIndex,
