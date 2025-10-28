@@ -60,7 +60,9 @@ class _LiveHackathonsPageState extends State<LiveHackathonsPage> {
         future: _future,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+              child: CircularProgressIndicator(color: const Color(0xff00ffd5)),
+            );
           }
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(

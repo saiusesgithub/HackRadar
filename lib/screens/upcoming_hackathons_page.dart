@@ -10,10 +10,13 @@ class UpcomingHackathonsPage extends StatefulWidget {
 class _UpcomingHackathonsPageState extends State<UpcomingHackathonsPage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Upcoming Hackathons Page - Coming Soon!',
-        style: Theme.of(context).textTheme.titleLarge,
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Center(
+        child: Text(
+          'Upcoming Hackathons Page - Coming Soon!',
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
       ),
     );
   }

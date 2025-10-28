@@ -10,34 +10,25 @@ class AboutPage extends StatelessWidget {
     const githubUrl = 'https://github.com/saiusesgithub/HackRadar';
 
     return ListView(
+      padding: const EdgeInsets.all(16),
       children: [
         Center(
           child: Column(
             children: [
               Container(
-                width: 80,
-                height: 80,
+                width: 100,
+                height: 100,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF00FFD5),
-                  shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.3),
+                      color: Colors.black.withOpacity(0.4),
                       blurRadius: 6,
                       offset: const Offset(0, 3),
                     ),
                   ],
                 ),
-                child: const Center(
-                  child: Text(
-                    'HR',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 28,
-                    ),
-                  ),
-                ),
+                clipBehavior: Clip.hardEdge,
+                child: Image.asset('assets/icons/logo.png', fit: BoxFit.cover),
               ),
               const SizedBox(height: 12),
               Text(
@@ -59,72 +50,20 @@ class AboutPage extends StatelessWidget {
         ),
         const SizedBox(height: 24),
 
-        Card(
-          color: Colors.transparent,
-          elevation: 0,
-          child: ListTile(
-            leading: const Icon(Icons.storage, color: Colors.white70),
-            title: const Text(
-              'Data source',
-              style: TextStyle(color: Colors.white),
-            ),
-            subtitle: const Text(
+        _buildInfoCard(
+          icon: Icons.storage,
+          title: 'Data source',
+          subtitle:
               'Events are scraped from public sources (initially Devfolio) and stored in Supabase. More sources will be added over time.',
-              style: TextStyle(color: Colors.white70),
-            ),
-          ),
         ),
-        const SizedBox(height: 12),
-
-        Card(
-          color: Colors.transparent,
-          elevation: 0,
-          child: ListTile(
-            leading: const Icon(Icons.person, color: Colors.white70),
-            title: const Text(
-              'Developer',
-              style: TextStyle(color: Colors.white),
-            ),
-            subtitle: const Text(
-              'saiusesgithub — Open source enthusiast',
-              style: TextStyle(color: Colors.white70),
-            ),
-          ),
+        _buildInfoCard(
+          icon: Icons.person,
+          title: 'Developer',
+          subtitle: 'saiusesgithub — Open source enthusiast',
         ),
-        const SizedBox(height: 12),
-
-        Card(
-          color: Colors.transparent,
-          elevation: 0,
-          child: ListTile(
-            leading: const Icon(Icons.code, color: Colors.white70),
-            title: const Text(
-              'Source code',
-              style: TextStyle(color: Colors.white),
-            ),
-            subtitle: Text(
-              githubUrl,
-              style: const TextStyle(color: Colors.white70),
-            ),
-            trailing: IconButton(
-              icon: const Icon(Icons.open_in_new, color: Colors.white70),
-              onPressed: () async {
-                final uri = Uri.parse(githubUrl);
-                if (!await launchUrl(
-                  uri,
-                  mode: LaunchMode.externalApplication,
-                )) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Could not open link')),
-                  );
-                }
-              },
-            ),
-          ),
-        ),
+        _buildGitHubCard(context, githubUrl),
 
         const SizedBox(height: 24),
-
         Center(
           child: Text(
             'If you have suggestions or want to contribute, open an issue on GitHub.',
@@ -133,6 +72,48 @@ class AboutPage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildInfoCard({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+  }) {
+    return Card(
+      color: Colors.transparent,
+      elevation: 0,
+      child: ListTile(
+        leading: Icon(icon, color: Colors.white70),
+        title: Text(title, style: const TextStyle(color: Colors.white)),
+        subtitle: Text(subtitle, style: const TextStyle(color: Colors.white70)),
+      ),
+    );
+  }
+
+  Widget _buildGitHubCard(BuildContext context, String githubUrl) {
+    return Card(
+      color: Colors.transparent,
+      elevation: 0,
+      child: ListTile(
+        leading: const Icon(Icons.code, color: Colors.white70),
+        title: const Text('Source code', style: TextStyle(color: Colors.white)),
+        subtitle: Text(
+          githubUrl,
+          style: const TextStyle(color: Colors.white70),
+        ),
+        trailing: IconButton(
+          icon: const Icon(Icons.open_in_new, color: Colors.white70),
+          onPressed: () async {
+            final uri = Uri.parse(githubUrl);
+            if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Could not open link')),
+              );
+            }
+          },
+        ),
+      ),
     );
   }
 }
